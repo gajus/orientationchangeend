@@ -36,8 +36,8 @@ screen.addEventListener('orientationchangeend', function () {
 
 | Name | Value | Default |
 | --- | --- | --- |
-| `noChangeCountToEnd` | Number of iterations the subject of interval inspection must not mutate to fire "orientationchangeend". | 100 |
-| `noEndTimeout` | Number of milliseconds after which fire the "orientationchangeend" if interval inspection did not do it before. | 1000 |
+| `noChangeCountToEnd` | Number of iterations the subject of interval inspection must not mutate to fire `orientationchangeend`. | `100` |
+| `noEndTimeout` | Number of milliseconds after which fire the `orientationchangeend` if interval inspection did not do it before. | `1000` |
 | `debug` | Enables logging of the events | `false` |
 
 All of the configuration parameters are optional.
