@@ -50,6 +50,8 @@ Event = function (config) {
             lastEnd = end;
 
             interval = setInterval(function () {
+                console.log(global.innerWidth, global.innerHeight);
+                
                 if (global.innerWidth === lastInnerWidth && global.innerHeight === lastInnerHeight) {
                     noChangeCount++;
 
