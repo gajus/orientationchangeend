@@ -8,7 +8,7 @@ The `orientationchangeend` event is fired when the orientation of the device has
 
 ## The Underlying Implementation
 
-A listener is attached to the `orientationchange`. Invoking the listener starts an interval. The interval is tracking the state of `window.innerWidth` and `window.innerHeight`. If both do not change for at least 10 iterations, the `orientationchangeend` event is fired.
+A listener is attached to the `orientationchange`. Invoking the listener starts an interval. The interval is tracking the state of `window.innerWidth` and `window.innerHeight`. If both do not change for at least 500 iterations, the `orientationchangeend` event is fired.
 
 If interval mechanism cannot detect a change or the the values continue to mutate, the `orientationchangeend` event is fired 600ms after the occurrence of the `orientationchange` event.
 
