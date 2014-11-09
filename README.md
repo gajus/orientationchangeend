@@ -29,6 +29,10 @@ OCE.on('orientationchangeend', function () {
 });
 ```
 
+### DOM Events
+
+As convenient as it would be, this event is not available in the global scope by default.
+
 To make the `orientationchangeend` event available to the `window`, re-emit the event using a [custom event](https://developer.mozilla.org/en/docs/Web/API/CustomEvent):
 
 ```js
@@ -36,13 +40,11 @@ var orientationchangeend;
 
 // Make sure that you are not adding event emitter more than once.
 if ('onorientationchangeend' in window) {
-    window.onorientationchangeend = true;
-
     orientationchangeend = new CustomEvent('orientationchangeend');
 
-    OCE.on('orientationchangeend', function () {
+    window.onorientationchangeend = OCE.on('orientationchangeend', function () {
         window.dispatchEvent(orientationchangeend);
-    })
+    });    
 }
 
 // Attach a listener to the "orientationchangeend" event.
