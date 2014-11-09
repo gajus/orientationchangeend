@@ -1,6 +1,6 @@
 # `orientationchangeend`
 
-[![Build Status](https://travis-ci.org/gajus/orientationchangeend.png?branch=master)](https://travis-ci.org/gajus/orientationchangeend)
+<!--[![Build Status](https://travis-ci.org/gajus/orientationchangeend.png?branch=master)](https://travis-ci.org/gajus/orientationchangeend)-->
 [![NPM version](https://badge.fury.io/js/orientationchangeend.svg)](http://badge.fury.io/js/orientationchangeend)
 [![Bower version](https://badge.fury.io/bo/orientationchangeend.svg)](http://badge.fury.io/bo/orientationchangeend)
 
