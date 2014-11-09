@@ -20,11 +20,10 @@ If there is a series of `orientationchange` events fired one after another, wher
 var config = {},
     OCE;
 
-/**
- * Start tracking the orientation change.
- */
+// Start tracking the orientation change.
 OCE = gajus.orientationchangeend(config);
 
+// Attach event listener to the "orientationchangeend" event.
 OCE.on('orientationchangeend', function () {
     // The orientation have changed.
 });
@@ -35,19 +34,20 @@ To make the `orientationchangeend` event available to the `window`, re-emit the 
 ```
 var orientationchangeend;
 
+// Make sure that you are not adding event emitter more than once.
 if ('onorientationchangeend' in window) {
     window.onorientationchangeend = true;
 
-    orientationchangeend = = new CustomEvent('orientationchangeend');
+    orientationchangeend = new CustomEvent('orientationchangeend');
 
-    eventEmitter.on('orientationchangeend', function () {
+    OCE.on('orientationchangeend', function () {
         window.dispatchEvent(orientationchangeend);
     })
 }
 
 // Attach a listener to the "orientationchangeend" event.
 window.addEventListener('orientationchangeend', function () {
-    console.log('The orientation of the device is now ' + screen.orientation);
+    console.log('The orientation of the device is now ' + window.orientation);
 });
 ```
 
