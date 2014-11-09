@@ -1,7 +1,7 @@
 {
   "name": "orientationchangeend",
   "description": "The orientationchangeend event is fired when the orientation of the device has changed and the associated rotation animation has been complete.",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "keywords": [
     "orientationchangeend",
     "orientationchange"
