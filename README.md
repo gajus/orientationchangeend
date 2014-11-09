@@ -12,6 +12,10 @@ There is no way to capture the end of the orientation change event because handl
 
 A listener is attached to the `orientationchange`. Invoking the listener starts an interval. The interval is tracking the state of `window.innerWidth` and `window.innerHeight`. The `orientationchangeend` event is fired when `config.noChangeCountToEnd` number of consequent iterations do not detect a value mutation or after `config.noEndTimeout` milliseconds, whichever happens first.
 
+If you have suggestions for better strategy to detect the end of the `orientationchange` event, please [raise an issue](https://github.com/gajus/orientationchangeend/issues).
+
+### Series of Events
+
 If there is a series of `orientationchange` events fired one after another, where `n` event `orientationchangeend` event has not been fired before the `n+2` `orientationchange`, then `orientationchangeend` will fire only for the last `orientationchange` event in the series.
 
 ## Usage
