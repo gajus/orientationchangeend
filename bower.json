@@ -1,0 +1,10 @@
+{
+  "name": "orientationchangeend",
+  "description": "The orientationchangeend event is fired when the orientation of the device has changed and the associated rotation animation has been complete.",
+  "version": "1.0.0",
+  "keywords": [],
+  "license": "BSD-3-Clause",
+  "authors": [
+    "Gajus Kuizinas <gk@anuary.com>"
+  ]
+}
