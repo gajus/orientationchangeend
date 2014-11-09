@@ -31,7 +31,7 @@ OCE.on('orientationchangeend', function () {
 
 To make the `orientationchangeend` event available to the `window`, re-emit the event using a [custom event](https://developer.mozilla.org/en/docs/Web/API/CustomEvent):
 
-```
+```js
 var orientationchangeend;
 
 // Make sure that you are not adding event emitter more than once.
