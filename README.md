@@ -31,7 +31,7 @@ OCE.on('orientationchangeend', function () {
 
 ### DOM Events
 
-As convenient as it would be, this event is not available in the global scope by default.
+I did not make the event available to the `window` to avoid polluting the global scope and possible future conflicts.
 
 To make the `orientationchangeend` event available to the `window`, re-emit the event using a [custom event](https://developer.mozilla.org/en/docs/Web/API/CustomEvent):
 
