@@ -29,6 +29,16 @@ OCE.on('orientationchangeend', function () {
 });
 ```
 
+### Configuration
+
+| Name | Value | Default |
+| --- | --- | --- |
+| `noChangeCountToEnd` | Number of iterations the subject of interval inspection must not mutate to fire `orientationchangeend`. | `100` |
+| `noEndTimeout` | Number of milliseconds after which fire the `orientationchangeend` if interval inspection did not do it before. | `1000` |
+| `debug` | Enables logging of the events | `false` |
+
+All of the configuration parameters are optional.
+
 ### DOM Events
 
 I did not make the event available to the `window` to avoid polluting the global scope and possible future conflicts.
@@ -52,16 +62,6 @@ window.addEventListener('orientationchangeend', function () {
     console.log('The orientation of the device is now ' + window.orientation);
 });
 ```
-
-## Configuration
-
-| Name | Value | Default |
-| --- | --- | --- |
-| `noChangeCountToEnd` | Number of iterations the subject of interval inspection must not mutate to fire `orientationchangeend`. | `100` |
-| `noEndTimeout` | Number of milliseconds after which fire the `orientationchangeend` if interval inspection did not do it before. | `1000` |
-| `debug` | Enables logging of the events | `false` |
-
-All of the configuration parameters are optional.
 
 ## Download
 
