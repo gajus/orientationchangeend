@@ -8,14 +8,15 @@
     <script src="./../dist/orientationchangeend.js"></script>
 </head>
 <script>
-gajus.orientationchangeend({
-    debug: true
+var OCE = gajus.orientationchangeend({
+    debug: false
 });
 
 window.addEventListener('orientationchange', function () {
     console.log('orientationchange');
 });
-window.addEventListener('orientationchangeend', function () {
+
+OCE.on('orientationchangeend', function () {
     console.log('orientationchangeend');
 });
 </script>

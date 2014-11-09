@@ -82,6 +82,7 @@ Event = function Event (config) {
 
     eventEmitter = Sister();
 
+    event = this;
     event.on = eventEmitter.on;
 
     config = config || {};
@@ -130,8 +131,6 @@ Event = function Event (config) {
             lastEnd = end;
 
             interval = setInterval(function () {
-                console.log(global.innerWidth, global.innerHeight);
-                
                 if (global.innerWidth === lastInnerWidth && global.innerHeight === lastInnerHeight) {
                     noChangeCount++;
 
@@ -161,6 +160,6 @@ Event = function Event (config) {
 global.gajus = global.gajus || {};
 global.gajus.orientationchangeend = Event;
 
-module.exports = orientationchangeend;
+module.exports = Event;
 }).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 },{"sister":1}]},{},[2])
