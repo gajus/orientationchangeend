@@ -4,7 +4,19 @@
 [![NPM version](https://badge.fury.io/js/orientationchangeend.svg)](http://badge.fury.io/js/orientationchangeend)
 [![Bower version](https://badge.fury.io/bo/orientationchangeend.svg)](http://badge.fury.io/bo/orientationchangeend)
 
-The `orientationchangeend` event is fired when the orientation of the device has changed and the associated rotation animation has been complete. `orientationchangeend` enables you to [capture dimensions](http://stackoverflow.com/questions/12452349/mobile-viewport-height-after-orientation-change) of the element in the state after the rotation change.
+The `orientationchangeend` event is fired when the orientation of the device has changed and the associated rotation animation has been complete.
+
+## The Issue
+
+> `orientationchange` event is fired when the orientation of the device has changed.
+
+– https://developer.mozilla.org/en-US/docs/Web/Events/orientationchange
+
+This definition neglects to mention that the event is fired after `window.orientation` property has changed, but before the orientation is reflected in the UI. Inspecting dimensions of elements (e.g. `window.innerWidth` or `window.innerHeight`) gives the dimensions of the elements in the pre-orientation change state.
+
+`orientationchangeend` is triggered at the end of the screen rotation animation that follows the orientation change event.
+
+This has been developed for use with the mobile Safari, though the nature of the implementation makes it safe to use with other vendors.
 
 ## The Underlying Implementation
 
