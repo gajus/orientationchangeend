@@ -17,13 +17,36 @@ If there is a series of `orientationchange` events fired one after another, wher
 ## Usage
 
 ```js
-var config = {};
+var config = {},
+    OCE;
 
-// Register the "orientationchangeend" event.
-gajus.orientationchangeend(config);
+/**
+ * Start tracking the orientation change.
+ */
+OCE = gajus.orientationchangeend(config);
+
+OCE.on('orientationchangeend', function () {
+    // The orientation have changed.
+});
+```
+
+To make the `orientationchangeend` event available to the `window`, re-emit the event using a [custom event](https://developer.mozilla.org/en/docs/Web/API/CustomEvent):
+
+```
+var orientationchangeend;
+
+if ('onorientationchangeend' in window) {
+    window.onorientationchangeend = true;
+
+    orientationchangeend = = new CustomEvent('orientationchangeend');
+
+    eventEmitter.on('orientationchangeend', function () {
+        window.dispatchEvent(orientationchangeend);
+    })
+}
 
 // Attach a listener to the "orientationchangeend" event.
-screen.addEventListener('orientationchangeend', function () {
+window.addEventListener('orientationchangeend', function () {
     console.log('The orientation of the device is now ' + screen.orientation);
 });
 ```

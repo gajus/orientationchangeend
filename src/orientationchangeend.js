@@ -1,8 +1,18 @@
 var Event,
-    orientationchangeend = new CustomEvent('orientationchangeend');
+    Sister = require('sister');
 
-Event = function (config) {
-    var lastEnd;
+Event = function Event (config) {
+    var event,
+        lastEnd,
+        eventEmitter;
+
+    if (!(this instanceof Event)) {
+        return new Event(config);
+    }
+
+    eventEmitter = Sister();
+
+    event.on = eventEmitter.on;
 
     config = config || {};
 
@@ -36,7 +46,7 @@ Event = function (config) {
                 timeout = null;
 
                 if (dispatchEvent) {
-                    global.dispatchEvent(orientationchangeend);
+                    eventEmitter.trigger('orientationchangeend');
                 }
             };
 

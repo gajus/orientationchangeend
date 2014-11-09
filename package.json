@@ -23,5 +23,8 @@
     "gulp-rename": "^1.2.0",
     "gulp-uglify": "^1.0.1",
     "jsonfile": "^2.0.0"
+  },
+  "dependencies": {
+    "sister": "^3.0.0"
   }
 }
