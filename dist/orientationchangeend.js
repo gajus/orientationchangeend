@@ -9,6 +9,8 @@ var Event,
     orientationchangeend = new CustomEvent('orientationchangeend');
 
 Event = function (config) {
+    var lastEnd;
+
     config = config || {};
 
     /**
@@ -33,24 +35,37 @@ Event = function (config) {
                 lastInnerHeight,
                 noChangeCount;
 
-            end = function () {
+            end = function (dispatchEvent) {
                 clearInterval(interval);
                 clearTimeout(timeout);
 
                 interval = null;
                 timeout = null;
 
-                global.dispatchEvent(orientationchangeend);
+                if (dispatchEvent) {
+                    global.dispatchEvent(orientationchangeend);
+                }
             };
+
+            // If there is a series of orientationchange events fired one after another,
+            // where n event orientationchangeend event has not been fired before the n+2 orientationchange,
+            // then orientationchangeend will fire only for the last orientationchange event in the series.
+            if (lastEnd) {
+                lastEnd(false);
+            }
+
+            lastEnd = end;
 
             interval = setInterval(function () {
                 if (global.innerWidth === lastInnerWidth && global.innerHeight === lastInnerHeight) {
                     noChangeCount++;
 
                     if (noChangeCount === config.noChangeCountToEnd) {
-                        console.debug('setInterval');
+                        if (config.debug) {
+                            console.debug('setInterval');
+                        }
 
-                        end();
+                        end(true);
                     }
                 } else {
                     lastInnerWidth = global.innerWidth;
@@ -59,9 +74,11 @@ Event = function (config) {
                 }
             });
             timeout = setTimeout(function () {
-                console.debug('setTimeout');
+                if (config.debug) {
+                    console.debug('setTimeout');
+                }
 
-                end();
+                end(true);
             }, config.noEndTimeout);
         });
 }
