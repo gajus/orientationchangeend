@@ -8,8 +8,9 @@ The `orientationchangeend` event is fired when the orientation of the device has
 
 ## The Underlying Implementation
 
-A listener is attached to the `orientationchange`. Invoking the listener starts an interval. The interval is tracking the state of `window.innerWidth` and `window.innerHeight`. The `orientationchangeend` event fire when 100 consequent iterations cannot detect value mutation or after 600ms, whichever happens first.
+There is no way to capture the end of the orientation change event because handling of the orientation change varies from browser to browser. Drawing a balance between the most reliable and the fastest way to detect the end of orientation change requires racing interval and timeout.
 
+A listener is attached to the `orientationchange`. Invoking the listener starts an interval. The interval is tracking the state of `window.innerWidth` and `window.innerHeight`. The `orientationchangeend` event fire when 100 consequent iterations cannot detect value mutation or after 600ms, whichever happens first.
 
 If both do not change for at least 500 iterations, the `orientationchangeend` event is fired.
 
@@ -20,10 +21,25 @@ If there is a series of `orientationchange` events fired one after another, wher
 ## Usage
 
 ```js
+var config = {};
+
+// Register the "orientationchangeend" event.
+gajus.orientationchangeend(config);
+
+// Attach a listener to the "orientationchangeend" event.
 screen.addEventListener('orientationchangeend', function () {
     console.log('The orientation of the device is now ' + screen.orientation);
 });
 ```
+
+## Configuration
+
+| Name | Value | Default |
+| `noChangeCountToEnd` | Number of iterations the subject of interval inspection must not mutate to fire "orientationchangeend". |
+| `noEndTimeout` | Number of milliseconds after which fire the "orientationchangeend" if interval inspection did not do it before. | 1000 |
+| `debug` | Enables logging of the events | `false` |
+
+All of the configuration parameters are optional.
 
 ## Download
 

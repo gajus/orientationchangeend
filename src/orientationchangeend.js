@@ -1,43 +1,65 @@
-var orientationchangeend = new CustomEvent('orientationchangeend'),
-    noChangeCountEnd = 100;
+var Event,
+    orientationchangeend = new CustomEvent('orientationchangeend');
 
-global
-    .addEventListener('orientationchange', function () {
-        var interval,
-            timeout,
-            end,
-            lastInnerWidth,
-            lastInnerHeight,
-            noChangeCount;
+Event = function (config) {
+    config = config || {};
 
-        end = function () {
-            clearInterval(interval);
-            clearTimeout(timeout);
+    /**
+     * @var {Number} Number of iterations the subject of interval inspection must not mutate to fire "orientationchangeend".
+     */
+    config.noChangeCountToEnd = config.noChangeCountToEnd || 100;
+    /**
+     * @var {Number} Number of milliseconds after which fire the "orientationchangeend" if interval inspection did not do it before.
+     */
+    config.noEndTimeout = 1000 || config.noEndTimeout;
+    /**
+     * @var {Boolean} Enables logging of the events.
+     */
+    config.debug = config.debug || false;
 
-            delete interval;
-            delete timeout;
+    global
+        .addEventListener('orientationchange', function () {
+            var interval,
+                timeout,
+                end,
+                lastInnerWidth,
+                lastInnerHeight,
+                noChangeCount;
 
-            global.dispatchEvent(orientationchangeend);
-        };
+            end = function () {
+                clearInterval(interval);
+                clearTimeout(timeout);
 
-        interval = setInterval(function () {
-            if (global.innerWidth === lastInnerWidth && global.innerHeight === lastInnerHeight) {
-                noChangeCount++;
+                interval = null;
+                timeout = null;
 
-                if (noChangeCount === noChangeCountEnd) {
-                    console.debug('setInterval');
+                global.dispatchEvent(orientationchangeend);
+            };
 
-                    end();
+            interval = setInterval(function () {
+                if (global.innerWidth === lastInnerWidth && global.innerHeight === lastInnerHeight) {
+                    noChangeCount++;
+
+                    if (noChangeCount === config.noChangeCountToEnd) {
+                        console.debug('setInterval');
+
+                        end();
+                    }
+                } else {
+                    lastInnerWidth = global.innerWidth;
+                    lastInnerHeight = global.innerHeight;
+                    noChangeCount = 0;
                 }
-            } else {
-                lastInnerWidth = global.innerWidth;
-                lastInnerHeight = global.innerHeight;
-                noChangeCount = 0;
-            }
-        });
-        timeout = setTimeout(function () {
-            console.debug('setTimeout');
+            });
+            timeout = setTimeout(function () {
+                console.debug('setTimeout');
 
-            end();
-        }, 1000);
-    });
+                end();
+            }, config.noEndTimeout);
+        });
+}
+
+global.gajus = global.gajus || {};
+global.gajus.orientationchangeend = Event;
+
+module.exports = orientationchangeend;
