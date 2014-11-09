@@ -4,7 +4,7 @@
 [![NPM version](https://badge.fury.io/js/orientationchangeend.svg)](http://badge.fury.io/js/orientationchangeend)
 [![Bower version](https://badge.fury.io/bo/orientationchangeend.svg)](http://badge.fury.io/bo/orientationchangeend)
 
-The `orientationchangeend` event is fired when the orientation of the device has changed and the associated rotation animation has been complete. `orientationchangeend` allows to capture dimensions of the elements in the after rotation change event state.
+The `orientationchangeend` event is fired when the orientation of the device has changed and the associated rotation animation has been complete. `orientationchangeend` enables you to [capture dimensions](http://stackoverflow.com/questions/12452349/mobile-viewport-height-after-orientation-change) of the element in the state after the rotation change.
 
 ## The Underlying Implementation
 
