@@ -10,7 +10,7 @@
   "author": "Gajus Kuizinas <gk@anuary.com>",
   "repository": {
     "type": "git",
-    "url": "https://github.com/gajus/orientationchangeend.js"
+    "url": "https://github.com/gajus/orientationchangeend"
   },
   "license": "BSD-3-Clause",
   "devDependencies": {
