@@ -22,9 +22,15 @@ This has been developed for use with the mobile Safari, though the nature of the
 
 There is no way to capture the end of the orientation change event because handling of the orientation change varies from browser to browser. Drawing a balance between the most reliable and the fastest way to detect the end of orientation change requires racing interval and timeout.
 
-A listener is attached to the `orientationchange`. Invoking the listener starts an interval. The interval is tracking the state of `window.innerWidth` and `window.innerHeight`. The `orientationchangeend` event is fired when `config.noChangeCountToEnd` number of consequent iterations do not detect a value mutation or after `config.noEndTimeout` milliseconds, whichever happens first.
+A listener is attached to the `orientationchange`. Invoking the listener starts an interval. The interval is tracking the state of the [Rotation Indication Variable](#rotation-indication-variable). The `orientationchangeend` event is fired when `config.noChangeCountToEnd` number of consequent iterations do not detect a value mutation or after `config.noEndTimeout` milliseconds, whichever happens first.
 
 If you have suggestions for better strategy to detect the end of the `orientationchange` event, please [raise an issue](https://github.com/gajus/orientationchangeend/issues).
+
+## Rotation Indication Variable
+
+The variable used to track the state of the rotation is a collection of `window.innerWidth` and `window.innerHeight`. This is a workaround until the [Screen Orientation API](http://www.w3.org/TR/screen-orientation/) becomes available in the iOS.
+
+I realize that this is not a bullet-proof implementation. If you have suggestions for better variables to track the state of the rotation, please contribute to the [Stack Overflow question](http://stackoverflow.com/questions/26829517/how-to-detect-the-state-of-the-screen-rotation) or [raise an issue](https://github.com/gajus/orientationchangeend/issues).
 
 ### Series of Events
 
