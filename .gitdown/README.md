@@ -1,15 +1,11 @@
-<!--
-This file has been generated using GitDown (https://github.com/gajus/gitdown).
-Direct edits to this will be be overwritten. Look for GitDown markup file under ./.gitdown/ path.
--->
-<h1 id="-orientationchangeend-">`orientationchangeend`</h1>
+# `orientationchangeend`
 
-[![NPM version](http://img.shields.io/npm/v/orientationchangeend.svg?style=flat)](https://www.npmjs.org/package/orientationchangeend)
-[![Bower version](http://img.shields.io/bower/v/orientationchangeend.svg?style=flat)](http://bower.io/search/?q=orientationchangeend)
+{"gitdown": "badge", "name": "npm-version"}
+{"gitdown": "badge", "name": "bower-version"}
 
 The `orientationchangeend` event is fired when the orientation of the device has changed and the associated rotation animation has been complete.
 
-<h2 id="-orientationchangeend--the-issue">The Issue</h2>
+## The Issue
 
 > `orientationchange` event is fired when the orientation of the device has changed.
 
@@ -21,7 +17,7 @@ This definition neglects to mention that the event is fired after `window.orient
 
 This has been developed for use with the mobile Safari, though the nature of the implementation makes it safe to use with other vendors.
 
-<h2 id="-orientationchangeend--the-underlying-implementation">The Underlying Implementation</h2>
+## The Underlying Implementation
 
 There is no way to capture the end of the orientation change event because handling of the orientation change varies from browser to browser. Drawing a balance between the most reliable and the fastest way to detect the end of orientation change requires racing interval and timeout.
 
@@ -29,17 +25,17 @@ A listener is attached to the `orientationchange`. Invoking the listener starts 
 
 If you have suggestions for better strategy to detect the end of the `orientationchange` event, please [raise an issue](https://github.com/gajus/orientationchangeend/issues).
 
-<h2 id="-orientationchangeend--rotation-indication-variable">Rotation Indication Variable</h2>
+## Rotation Indication Variable
 
 The variable used to track the state of the rotation is a collection of `window.innerWidth` and `window.innerHeight`. This is a workaround until the [Screen Orientation API](http://www.w3.org/TR/screen-orientation/) becomes available in the iOS.
 
 I realize that this is not a bullet-proof implementation. If you have suggestions for better variables to track the state of the rotation, please contribute to the [Stack Overflow question](http://stackoverflow.com/questions/26829517/how-to-detect-the-state-of-the-screen-rotation) or [raise an issue](https://github.com/gajus/orientationchangeend/issues).
 
-<h3 id="-orientationchangeend--rotation-indication-variable-series-of-events">Series of Events</h3>
+### Series of Events
 
 If there is a series of `orientationchange` events fired one after another, where `n` event `orientationchangeend` event has not been fired before the `n+2` `orientationchange`, then `orientationchangeend` will fire only for the last `orientationchange` event in the series.
 
-<h2 id="-orientationchangeend--usage">Usage</h2>
+## Usage
 
 ```js
 var config = {},
@@ -54,7 +50,7 @@ OCE.on('orientationchangeend', function () {
 });
 ```
 
-<h3 id="-orientationchangeend--usage-configuration">Configuration</h3>
+### Configuration
 
 | Name | Value | Default |
 | --- | --- | --- |
@@ -64,7 +60,7 @@ OCE.on('orientationchangeend', function () {
 
 All of the configuration parameters are optional.
 
-<h3 id="-orientationchangeend--usage-dom-events">DOM Events</h3>
+### DOM Events
 
 I did not make the event available to the `window` to avoid polluting the global scope and possible future conflicts.
 
@@ -88,7 +84,7 @@ window.addEventListener('orientationchangeend', function () {
 });
 ```
 
-<h2 id="-orientationchangeend--download">Download</h2>
+## Download
 
 Using [Bower](http://bower.io/):
 

@@ -6,7 +6,8 @@ var gulp = require('gulp'),
     rename = require('gulp-rename'),
     uglify = require('gulp-uglify'),
     browserify = require('gulp-browserify'),
-    jsonfile = require('jsonfile');
+    jsonfile = require('jsonfile'),
+    GitDown = require('gitdown');
 
 gulp.task('lint', function () {
     return gulp
@@ -58,8 +59,15 @@ gulp.task('test', ['version'], function (cb) {
         .pipe(mocha());
 });
 
+gulp.task('gitdown', function () {
+    return GitDown
+        .read('.gitdown/README.md')
+        .write('README.md');
+});
+
 gulp.task('watch', function () {
     gulp.watch(['./src/*', './tests/*', './package.json'], ['default']);
+    gulp.watch(['./.gitdown/*'], ['gitdown']);
 });
 
 gulp.task('default', ['test']);
