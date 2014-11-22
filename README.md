@@ -101,8 +101,3 @@ Using [NPM](https://www.npmjs.org/):
 ```sh
 npm install orientationchangeend
 ```
-
-The old-fashioned way, download either of the following files:
-
-* https://raw.githubusercontent.com/gajus/orientationchangeend/master/dist/orientationchangeend.js
-* https://raw.githubusercontent.com/gajus/orientationchangeend/master/dist/orientationchangeend.min.js
