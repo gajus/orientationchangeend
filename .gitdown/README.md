@@ -1,4 +1,4 @@
-# `orientationchangeend`
+# orientationchangeend
 
 {"gitdown": "badge", "name": "npm-version"}
 {"gitdown": "badge", "name": "bower-version"}
